@@ -27,9 +27,9 @@ pipeline {
             }
         }
         
-        stage('QUALITY') {
+        stage('DOCKERIZE') {
             steps {
-                sh 'mvn sonar:sonar'
+                sh 'docker build -t user-service:latest .'
             }
         }
 
