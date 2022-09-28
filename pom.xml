@@ -18,7 +18,7 @@
 		<sonar.host.url>http://54.84.192.224:9000/</sonar.host.url>
 		<sonar.login>admin</sonar.login>
 		<sonar.password>root</sonar.password>	
-		<sonar.Prpe.projectName>User service</sonar.Prpe.projectName>
+		<sonar.projectName>User service</sonar.projectName>
 	</properties>
 	<dependencies>
 		<dependency>
