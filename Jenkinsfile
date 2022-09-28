@@ -20,7 +20,13 @@ pipeline {
                 sh 'mvn test'
             }
         }
-            
+        /*
+        stage('QUALITY') {
+            steps {
+                sh 'mvn sonar:sonar'
+            }
+        }
+          */  
         stage('BUILD') {
             steps {
                 sh 'mvn clean package -DskipTests'
