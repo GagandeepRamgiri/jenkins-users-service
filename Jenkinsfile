@@ -15,6 +15,12 @@ pipeline {
             }
         }
         
+        stage('QUALITY') {
+            steps {
+                sh 'mvn sonar:sonar'
+            }
+        }
+        
         stage('TEST') {
             steps {
                 sh 'mvn test'
