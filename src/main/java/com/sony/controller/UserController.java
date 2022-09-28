@@ -24,7 +24,7 @@ public class UserController {
 	}
 	
 	@GetMapping(path = "/{id}" , produces = "application/json")
-	public ResponseEntity<?> handleGetUserById(@PathVariable String id) {
+	public ResponseEntity<Object> handleGetUserById(@PathVariable String id) {
 		User obj = mgr.getUserById(id);
 		if(obj == null) {
 			return ResponseEntity.notFound().build();
