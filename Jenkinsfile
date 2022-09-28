@@ -3,25 +3,25 @@ pipeline {
 
     stages {
           
-        stage('compile') {
+        stage('COMPILE') {
             steps {
                 sh 'mvn compile'
             }
         }
         
-        stage('clean') {
+        stage('CLEAN') {
             steps {
                 sh 'mvn clean'
             }
         }
         
-        stage('test') {
+        stage('TEST') {
             steps {
                 sh 'mvn test'
             }
         }
             
-        stage('build') {
+        stage('BUILD') {
             steps {
                 sh 'mvn clean package -DskipTests'
             }
