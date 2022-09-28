@@ -15,12 +15,6 @@ pipeline {
             }
         }
         
-        stage('QUALITY') {
-            steps {
-                sh 'mvn sonar:sonar'
-            }
-        }
-        
         stage('TEST') {
             steps {
                 sh 'mvn test'
@@ -30,6 +24,12 @@ pipeline {
         stage('BUILD') {
             steps {
                 sh 'mvn clean package -DskipTests'
+            }
+        }
+        
+        stage('QUALITY') {
+            steps {
+                sh 'mvn sonar:sonar'
             }
         }
 
