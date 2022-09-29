@@ -40,7 +40,7 @@ pipeline {
         
         stage('DOCKERIZE') {
             steps {
-                sh 'docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${env.BUILD_ID} .'
+                sh 'docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${BUILD_ID} .'
             }
         }
 		
@@ -57,6 +57,7 @@ pipeline {
         post {
         	always {
         		sh 'docker stop ${DOCKER_TMP_CONTAINER_NAME}'
+        		sh 'docker rmi ${DOCKER_IMG_NAME}:latest ${DOCKER_IMG_NAME}:${BUILD_ID}'
         	}
         	
         }
