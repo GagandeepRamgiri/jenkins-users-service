@@ -40,13 +40,13 @@ pipeline {
         
         stage('DOCKERIZE') {
             steps {
-                sh 'docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${BUILD_ID} .'
+                sh "docker build -t ${DOCKER_IMG_NAME}:latest -t ${DOCKER_IMG_NAME}:${BUILD_ID} ."
             }
         }
 		
 		stage('INTEGRATION TESTS'){
 			steps{
-				sh 'docker run -dp 7070:8080 --rm --name ${DOCKER_TMP_CONTAINER_NAME} ${DOCKER_IMG_NAME}:latest'
+				sh "docker run -dp 7070:8080 --rm --name ${DOCKER_TMP_CONTAINER_NAME} ${DOCKER_IMG_NAME}:latest"
 				sleep 10
 				sh 'curl -i http://localhost:7070/api/users'
 				}
@@ -56,8 +56,8 @@ pipeline {
         
         post {
         	always {
-        		sh 'docker stop ${DOCKER_TMP_CONTAINER_NAME}'
-        		sh 'docker rmi ${DOCKER_IMG_NAME}:latest ${DOCKER_IMG_NAME}:${BUILD_ID}'
+        		sh 'docker stop ${DOCKER_TMP_CONTAINER_NAME}"
+        		sh "docker rmi ${DOCKER_IMG_NAME}:latest ${DOCKER_IMG_NAME}:${BUILD_ID}"
         	}
         	
         }
