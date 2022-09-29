@@ -56,21 +56,20 @@ pipeline {
 			*/
 		stage('DOCKER PUBLISH'){
 			steps {
-			
-			withDockerRegistry([credentialsId: 'docker_creds', url: '']) {
-    			sh "docker push ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${env.BUILD_ID}"
-    			sh "docker push ${DOCKER_REPO}/${DOCKER_IMG_NAME}:latest"
-			}
+				withDockerRegistry([credentialsId: 'docker_creds', url: '']) {
+    				sh "docker push ${DOCKER_REPO}/${DOCKER_IMG_NAME}:${env.BUILD_ID}"
+    				sh "docker push ${DOCKER_REPO}/${DOCKER_IMG_NAME}:latest"
+				}
 			}
          }
-        }
+	}
         
         
         
         post {
         	always {
-        		sh "docker stop ${DOCKER_TMP_CONTAINER_NAME}"
-        		sh "docker rmi ${DOCKER_IMG_NAME}:latest ${DOCKER_IMG_NAME}:${env.BUILD_ID}"
+        		sh "docker stop ${DOCKER_REPO}/${DOCKER_TMP_CONTAINER_NAME}"
+        		sh "docker rmi ${DOCKER_REPO}/${DOCKER_IMG_NAME}:latest ${DOCKER_IMG_NAME}:${env.BUILD_ID}"
         	}
         	
         }
